@@ -1,4 +1,12 @@
+
+
+
+
 #! /data/data/com.termux/files/usr/bin
 echo ">> "
+
 read a
-echo "$a"
+echo ">> "
+read b
+
+echo "$a + $b"
