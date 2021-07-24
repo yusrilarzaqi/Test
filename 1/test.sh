@@ -1,7 +1,7 @@
 
-echo ">> "
+echo "masukan : "
 read a
-echo ">> "
+echo "masukan : "
 read b
 
 echo "$a + $b"
