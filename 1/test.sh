@@ -1,7 +1,12 @@
 
-echo "masukan : "
+
+
+
+#! /data/data/com.termux/files/usr/bin
+echo ">> "
+
 read a
-echo "masukan : "
+echo ">> "
 read b
 
 echo "$a + $b"
