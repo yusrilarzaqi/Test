@@ -1,4 +1,7 @@
 
 echo ">> "
 read a
-echo "$a"
+echo ">> "
+read b
+
+echo "$a + $b"
