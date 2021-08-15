@@ -6,3 +6,4 @@ echo ">> "
 read b
 
 echo "$a + $b"
+echo "Helo world"
