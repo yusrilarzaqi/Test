@@ -6,10 +6,11 @@ int main(){
     int a;
     cout << ">> "; cin >> a;
     func(a);
+    cout << "swuare root ";
     cout << "hasil : " << a << endl;
     return 0;
 }
 
 void func(int &a){
-    a = a * a;
+    sqrt(a);
 }
