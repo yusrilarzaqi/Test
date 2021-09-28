@@ -1,4 +1,4 @@
 # test
 - git repo test
 - [github](https://github.com/yusrilarzaqi)
-- ![foto](/sdcard/pictures/foto.jpg)
+- ![foto](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg)
