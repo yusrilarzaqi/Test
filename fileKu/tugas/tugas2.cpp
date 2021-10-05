@@ -4,7 +4,7 @@
 
 int main(){
     int umur;
-    int terdaftar[2] = {185512}
+    int terdaftar[2] = {185512, 185513}
     cout << "WARNING 18+ BERAPA UMUR ANDA " << endl;
     cout << ">> "; cin >> umur;
 
@@ -12,7 +12,6 @@ int main(){
         int no_pendaftaran;
         cout << "masukan nomor pendaftaran : ";
         cin >> no_pendaftaran;
-
 
 
 
