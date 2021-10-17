@@ -1,59 +1,140 @@
 call plug#begin("~/.vim/plugged")
-
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-jp/vim-cpp'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-sensible'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
-Plug 'majutsushi/tagbar'
-
+Plug 'ryanoasis/vim-devicons'
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
+Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
 
-colorscheme obsidian2
+map <C-x> :ter <return>
+map <C-p> :!g++ ./**.cpp -o main.out <return>
+" colorscheme mod8 
+" colorscheme sublimemonokai
+" colorscheme  onehalfdark
+" colorscheme tokyonight
+
+set termguicolors
+
+let g:lightline = {'colorscheme' : 'tokyonight'}
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 1
+
+
+colorscheme tokyonight
+
+
+set mouse=a
 set number
 set relativenumber
 set ruler
 syntax enable
 set title
 set encoding=utf-8
-set cursorline
+" set cursorline
 set autoindent
+set hidden
 set smartindent
+set nowrap
 
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 set smarttab
-set scrolloff=10
-set showtabline=2
+set scrolloff=7
+set showtabline=2 " 2
 set cmdheight=2
 
 
 " ============================================================================
 " AIRLINE CONFIGURATION
-" ============================================================================
+" " ============================================================================
 " set airline theme
 " let g:airline_theme = 'wombat'
-let g:airline_theme = 'onedark'
-" let g:airline_theme = 'base16'
+" let g:airline_theme = 'onedark'
+" let g:airline_theme = 'atomic'
+" llet g:airline_theme = 'base16'
+" let g:airline_theme = 'base16_adwaita'
+let g:airline_theme = 'tokyonight'
 " displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 " separators can be configured independently for the tablne
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '<'
 " populate the g:airline_symbols dictionary with the powerline symbols
 let g:airline_powerline_fonts = 1
 
-" tagbar
-nmap <C-c> :TagbarToggle<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
+
+
+" disable beep on errors.
+set noerrorbells
+
+" [DISABLED] flash the screen instead of beeping on errors.
+set novisualbell
+set termguicolors
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+
+" Some servers have issues with backup files, see #649.
+" set nobackup
+" set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
